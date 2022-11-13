@@ -1,0 +1,93 @@
+spring:
+  #静态资源处理
+  resources:
+    add-mappings: true
+    cache:
+      cachecontrol:
+        max-age: 3600
+    chain:
+      cache: true
+      enabled: true
+      compressed: true
+      html-application-cache: true
+    static-locations: classpath:/static/
+  #启动默认静态资源处理，默认启动
+
+  #  thymeleaf??
+  thymeleaf:
+#    ????
+    cache: false
+#    ?????
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/seckill?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: Cl@159064490
+    hikari:
+      #?????
+      pool-name: DateHikariCP
+      #???????
+      minimum-idle: 5
+      #??????????
+      idle-timeout: 180000
+      #?????
+      maximum-pool-size: 10
+      #????????????
+      auto-commit: true
+      #????????
+      max-lifetime: 180000
+      #??????
+      connection-timeout: 180000
+      #?????????????
+      connection-test-query: SELECT 1
+
+  redis:
+    database: 0
+    host: 192.168.197.141
+    connect-timeout: 10000ms
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: 10000ms
+        max-idle: 200
+        min-idle: 5
+  rabbitmq:
+    host: 192.168.197.138
+    username: guest
+    password: guest
+    virtual-host: /
+    port: 5672
+    listener:
+      simple:
+        concurrency: 10
+#        最大数量
+        max-concurrency: 10
+#        限制消费者每次只能处理一条消息
+        prefetch: 1
+        auto-startup: true
+        default-requeue-rejected: true
+    template:
+      retry:
+        enabled: true
+        initial-interval: 1000ms
+        max-attempts: 3
+        max-interval: 10000ms
+        multiplier: 1
+
+#mybatis_plus??
+mybatis-plus:
+  #??Mapper.xml????
+  mapper-locations: classpath*:/mapper/*Mapper.xml
+  #??Mybatis-plus??????????????
+  type-aliases-package: com.shmtu.seckill.pojo
+
+# Mybatis Sql ??????????????Mapper.xml?????
+logging:
+  level:
+    com.shmtu.seckill.mapper: debug
+
+
+
+
+
+
