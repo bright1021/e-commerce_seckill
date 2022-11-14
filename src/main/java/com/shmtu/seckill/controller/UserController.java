@@ -23,9 +23,4 @@ public class UserController {
         return RespBean.success(user);
     }
 
-    @RequestMapping("/mq")
-    @ResponseBody
-    public void mq(){
-        mqSender.send("hello world");
-    }
 }
